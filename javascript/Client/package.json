@@ -1,0 +1,22 @@
+{
+  "name": "node-postgres-intro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.6.7",
+    "express": "^4.17.3",
+    "install": "^0.13.0",
+    "npm": "^8.7.0",
+    "pg": "^8.7.3",
+    "redis": "^4.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

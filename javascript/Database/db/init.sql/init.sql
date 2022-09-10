@@ -1,0 +1,2 @@
+CREATE TABLE items(Id INT, Title VARCHAR(100), Descripcion VARCHAR(254), keywords VARCHAR(254), link VARCHAR(100));
+INSERT INTO items(Id, Title, Descripcion, keywords, link) VALUES (1,'s','r','key','h2');

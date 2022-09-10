@@ -1,0 +1,57 @@
+version: '3.7'
+services:
+
+  client:
+    container_name: cliente-http
+    build: ./Client
+    depends_on:
+      - grpc_server
+      - redis
+    ports:
+      - "3000:3000"
+
+  client2:
+    container_name: cliente-http2
+    build: ./Client
+    depends_on:
+      - grpc_server
+      - redis
+    ports:
+      - "3001:3000"
+
+  grpc_server:
+    container_name: servidor-grpc
+    build: ./ServerJS
+    depends_on:
+      - postgres
+    ports:
+      - "8030:8030"
+
+  postgres:
+    image: docker.io/bitnami/postgresql:11
+    volumes:
+      - ./Database/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_DATABASE=tiendita
+      - ALLOW_EMPTY_PASSWORD=yes
+      - POSTGRESQL_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+
+  redis:
+    container_name: cache
+    image: redis:6.2.6
+    restart: always
+    ports:
+      - "8031:6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    command:
+      [
+        "redis-server",
+        "--bind",
+        "redis",
+        "--maxmemory 2mb",
+        "--maxmemory-policy allkeys-lru"
+      ]
