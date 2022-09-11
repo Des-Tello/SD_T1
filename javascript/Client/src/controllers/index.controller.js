@@ -41,17 +41,18 @@ const searchitems=(req,res)=>{
         let reply = await redis_client.get(busqueda);
             if(reply){
                 cache = JSON.parse(reply);
+                console.log("Cache: "+cache)
                 console.log("Busqueda: "+busqueda)
                 console.log("Encontrado en Caché!")
                 console.log("Resultados:")
                 var string_total=""
                 for (i in cache['product']){
                 var id=cache['product'][i].id
-                var name=cache['product'][i].name
-                var price=cache['product'].price
-                var category=cache['product'][i].category
-                var count=cache['product'][i].count
-                const stringsumar='id: '+id+' | name:'+name+' | price:'+price+' | category:'+category+' | count:'+count
+                var title=cache['product'][i].title
+                var descripcion=cache['product'].descripcion
+                var keywords=cache['product'][i].keywords
+                var link=cache['product'][i].link
+                const stringsumar='id: '+id+' | title:'+title+' | descripcion:'+descripcion+' | keywords:'+keywords+' | link:'+link
                 string_total=string_total+stringsumar+'\n'
                 }
                 console.log(string_total)

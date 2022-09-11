@@ -9,16 +9,7 @@ services:
       - redis
     ports:
       - "3000:3000"
-
-  client2:
-    container_name: cliente-http2
-    build: ./Client
-    depends_on:
-      - grpc_server
-      - redis
-    ports:
-      - "3001:3000"
-
+      
   grpc_server:
     container_name: servidor-grpc
     build: ./ServerJS
