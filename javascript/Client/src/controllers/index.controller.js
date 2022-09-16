@@ -49,7 +49,7 @@ const searchitems=(req,res)=>{
                 for (i in cache['product']){
                 var id=cache['product'][i].id
                 var title=cache['product'][i].title
-                var descripcion=cache['product'].descripcion
+                var descripcion=cache['product'][i].descripcion
                 var keywords=cache['product'][i].keywords
                 var link=cache['product'][i].link
                 const stringsumar='id: '+id+' | title:'+title+' | descripcion:'+descripcion+' | keywords:'+keywords+' | link:'+link
