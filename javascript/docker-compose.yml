@@ -5,8 +5,10 @@ services:
     container_name: cliente-http
     build: ./Client
     depends_on:
-      - grpc_server
       - redis
+      - redis2
+      - redis3
+      # - redis
     ports:
       - "3000:3000"
       
@@ -31,18 +33,35 @@ services:
       - "5432:5432"
 
   redis:
-    container_name: cache
-    image: redis:6.2.6
-    restart: always
+    image: bitnami/redis:6.0
+    container_name: redis-tarea1-1
     ports:
-      - "8031:6379"
+      - "6379:6379"
     environment:
+      - REDIS_REPLICATION_MODE=master
       - ALLOW_EMPTY_PASSWORD=yes
-    command:
-      [
-        "redis-server",
-        "--bind",
-        "redis",
-        "--maxmemory 2mb",
-        "--maxmemory-policy allkeys-lru"
-      ]
+    restart: always
+    
+  redis2:
+    image: bitnami/redis:6.0
+    container_name: redis-tarea1-2
+    ports:
+      - "7001:6379"
+    environment:
+      - REDIS_REPLICATION_MODE=slave
+      - REDIS_MASTER_HOST=redis
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_MASTER_PORT_NUMBER=6379
+    restart: always
+    
+  redis3:
+    image: bitnami/redis:6.0
+    container_name: redis-tarea1-3
+    ports:
+      - "7002:6379"
+    environment:
+      - REDIS_REPLICATION_MODE=slave
+      - REDIS_MASTER_HOST=redis
+      - REDIS_MASTER_PORT_NUMBER=6379
+      - ALLOW_EMPTY_PASSWORD=yes
+    restart: always

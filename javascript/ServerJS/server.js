@@ -24,7 +24,7 @@ server.addService(a.InventorySearch.service, {
       if (err) {
         return console.error('Error acquiring client', err.stack)
       }
-      client.query(`select * from items where title like '%' || $1 || '%';`, [busqueda], (err, result) => {
+      client.query(`select * from items where keywords like '%' || $1 || '%';`, [busqueda], (err, result) => {
         release()
         if (err) {
           return console.error('Error executing query', err.stack)
