@@ -33,35 +33,51 @@ services:
       - "5432:5432"
 
   redis:
-    image: bitnami/redis:6.0
-    container_name: redis-tarea1-1
-    ports:
-      - "6379:6379"
-    environment:
-      - REDIS_REPLICATION_MODE=master
-      - ALLOW_EMPTY_PASSWORD=yes
+    container_name: cache
+    image: redis:6.2.6
     restart: always
-    
+    ports:
+      - "8031:6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    command:
+      [
+        "redis-server",
+        "--bind",
+        "redis",
+        "--maxmemory 1mb",
+        "--maxmemory-policy allkeys-lfu"
+      ]
   redis2:
-    image: bitnami/redis:6.0
-    container_name: redis-tarea1-2
-    ports:
-      - "7001:6379"
-    environment:
-      - REDIS_REPLICATION_MODE=slave
-      - REDIS_MASTER_HOST=redis
-      - ALLOW_EMPTY_PASSWORD=yes
-      - REDIS_MASTER_PORT_NUMBER=6379
+    container_name: cache2
+    image: redis:6.2.6
     restart: always
-    
+    ports:
+      - "8032:6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    command:
+      [
+        "redis-server",
+        "--bind",
+        "redis2",
+        "--maxmemory 1mb",
+        "--maxmemory-policy allkeys-random"
+      ]
+  
   redis3:
-    image: bitnami/redis:6.0
-    container_name: redis-tarea1-3
-    ports:
-      - "7002:6379"
-    environment:
-      - REDIS_REPLICATION_MODE=slave
-      - REDIS_MASTER_HOST=redis
-      - REDIS_MASTER_PORT_NUMBER=6379
-      - ALLOW_EMPTY_PASSWORD=yes
+    container_name: cache3
+    image: redis:6.2.6
     restart: always
+    ports:
+      - "8033:6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    command:
+      [
+        "redis-server",
+        "--bind",
+        "redis3",
+        "--maxmemory 1mb",
+        "--maxmemory-policy allkeys-lru"
+      ]

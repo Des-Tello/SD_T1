@@ -1,0 +1,22 @@
+Redis3:
+    disco
+    disc
+    discover
+    music
+    dis
+
+Redis2:
+    blue
+    sport
+    personal
+    count
+    car
+    ca
+
+Redis1:
+    cart
+    roc
+    games
+    hair
+    search
+
