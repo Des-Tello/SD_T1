@@ -1,5 +1,5 @@
 # Tarea 1
-Este es el repositorio correspondiente a la Tarea 1 del curso Sistemas Distribuidos, para poder visualizar el sistema desarrollado ingresar a la carpeta "Javascrip"
+Este es el repositorio correspondiente a la Tarea 1 del curso Sistemas Distribuidos, para poder visualizar el sistema desarrollado ingresar a la carpeta "Javascript"
 ## Video
 El siguiente video recorre las carpetas utilizadas para simular el motor de busqueda que solicita la tarea, breve explicación del docker-compose y los contenedores que este levanta. 
 Finalmente se hace una prueba a uno de los servicios de redis, especificamente el que tiene la politica de LRU configurada.
