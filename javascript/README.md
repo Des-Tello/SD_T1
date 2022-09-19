@@ -4,7 +4,7 @@ Para ejecutar $\textbf{crawler.py}$, usaremos:
 ```
 py crawler.py
 ```
-Donde obtendremos un archivo $\textit{.sql}$ con todas las sentencias que se ejecutarán al momento de ejecutar la sentencia.
+Donde obtendremos un archivo $\textit{.sql}$ con todas las sentencias que se ejecutarán al momento de levantar el contenedor del postgres.
 
 Para poder levantar todos los servicios haremos uso del comando:
 ```sh
