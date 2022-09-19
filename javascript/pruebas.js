@@ -1,5 +1,5 @@
 function convertStoI() {
-    let a = "ca"
+    let a = "c"
     let direccion = 0
     
     for(var i =0; i < a.length; i++){

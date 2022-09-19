@@ -3,7 +3,7 @@ const {Pool} = require('pg');
 const connectionData = {
     user:'postgres',
     host:'postgres',
-    database:'tiendita',
+    database:'xoogle',
     password:'postgres',
     port:5432
 }

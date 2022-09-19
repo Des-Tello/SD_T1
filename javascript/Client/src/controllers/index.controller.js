@@ -43,9 +43,7 @@ console.log('Redis conection: '+redis_client.isOpen);
 console.log('Redis 2 conection: '+redis_client2.isOpen);
 console.log('Redis 3 conection: '+redis_client3.isOpen);
 
-let resp1 = false
-let resp2 = false
-let resp3 = false
+
 
 var packageDefinition = protoLoader.loadSync(PROTO_PATH, options);
 
@@ -63,12 +61,17 @@ const searchitems=(req,res)=>{
     for(var i =0; i < busqueda.length; i++){
         direccion += busqueda.charCodeAt(i)
     }
-    direccion = direccion%3 + 1
+    direccion = direccion%3 + 1;
 
-    let cache = null;
-    let cache2 = null;
-    let cache3 = null;
     (async () => {
+
+        let resp1 = false;
+        let resp2 = false;
+        let resp3 = false;
+        let cache = null;
+        let cache2 = null;
+        let cache3 = null;
+
         let reply = await redis_client.get(busqueda);
         let reply2 = await redis_client2.get(busqueda);
         let reply3 = await redis_client3.get(busqueda);
@@ -91,6 +94,7 @@ const searchitems=(req,res)=>{
                 string_total=string_total+stringsumar+'\n'
                 }
                 console.log(string_total)
+                console.log("Encontrado en Redis 1")
                 console.log("--------------------------------------------------------------------------------------------------------------------------------")
 
 
@@ -114,6 +118,7 @@ const searchitems=(req,res)=>{
                 string_total=string_total+stringsumar+'\n'
                 }
                 console.log(string_total)
+                console.log("Encontrado en Redis 2")
                 console.log("--------------------------------------------------------------------------------------------------------------------------------")
 
                 resp2 = true
@@ -135,6 +140,7 @@ const searchitems=(req,res)=>{
                 string_total=string_total+stringsumar+'\n'
                 }
                 console.log(string_total)
+                console.log("Encontrado en Redis 3")
                 console.log("--------------------------------------------------------------------------------------------------------------------------------")
 
                 resp3 = true
@@ -142,12 +148,6 @@ const searchitems=(req,res)=>{
 
             if(resp1 || resp2 || resp3){
                 res.status(200).json(cache,cache2,cache3)
-                resp1 = false
-                resp2 = false
-                resp3 = false
-                cache = null
-                cache2 = null
-                cache3 = null
             }
             
             else{
@@ -181,7 +181,7 @@ const searchitems=(req,res)=>{
                         }
                     }
                 });
-            } 
+            }
     })();
 }
 

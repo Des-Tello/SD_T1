@@ -1,22 +1,22 @@
-Redis3:
+Redis3 lru:
     disco
     disc
     discover
     music
     dis
 
-Redis2:
+Redis2 random:
     blue
     sport
     personal
+    perso
     count
     car
-    ca
+    news
+    forum
+    jobs
 
-Redis1:
-    cart
-    roc
-    games
-    hair
-    search
-
+Redis1 lfu:
+    c
+    i
+    port most frec

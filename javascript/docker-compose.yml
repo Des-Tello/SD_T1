@@ -2,18 +2,17 @@ version: '3.7'
 services:
 
   client:
-    container_name: cliente-http
+    container_name: Cliente
     build: ./Client
     depends_on:
       - redis
       - redis2
       - redis3
-      # - redis
     ports:
       - "3000:3000"
       
   grpc_server:
-    container_name: servidor-grpc
+    container_name: Server
     build: ./ServerJS
     depends_on:
       - postgres
@@ -26,7 +25,7 @@ services:
       - ./Database/db/init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       - POSTGRESQL_USERNAME=postgres
-      - POSTGRESQL_DATABASE=tiendita
+      - POSTGRESQL_DATABASE=xoogle
       - ALLOW_EMPTY_PASSWORD=yes
       - POSTGRESQL_PASSWORD=postgres
     ports:
@@ -45,7 +44,7 @@ services:
         "redis-server",
         "--bind",
         "redis",
-        "--maxmemory 1mb",
+        "--maxmemory 2mb",
         "--maxmemory-policy allkeys-lfu"
       ]
   redis2:
