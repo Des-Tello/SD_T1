@@ -1,26 +1,10 @@
-# Node
+# Importante
 
-Para levantar las instancias dentro de la topología
+Para poder levantar todos los servicios haremos uso del comando:
 ```sh
 docker-compose up --build
 ```
-POST
+Para poder realizar peticiones de tipo POST al cliente, usaremos:
 ```sh
-http://localhost:3000/inventory/search?q=Mens
-```
-
-
-Para bajar las instancias del compose
-```sh
-docker-compose down
-```
-
-Borrar cache en contenedores
-```sh
-docker system prune -a
-```
-
-Borrar cache en volumenes
-```sh
-docker volume rm $(docker volume ls -q)
+http://localhost:3000/inventory/search?q=<BUSQUEDA>
 ```
